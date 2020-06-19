@@ -1,1 +1,1 @@
-web: java -jar target/store-angel-0.0.1-SNAPSHOT.jar
+web: java -jar build/libs/store-angel-0.0.1-SNAPSHOT.jar
