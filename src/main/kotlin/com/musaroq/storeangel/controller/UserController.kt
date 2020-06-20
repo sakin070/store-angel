@@ -1,6 +1,6 @@
 package com.musaroq.storeangel.controller
 
-import com.musaroq.storeangel.entities.User
+import com.musaroq.storeangel.entities.StoreUser
 import com.musaroq.storeangel.entities.UserRepository
 import org.springframework.data.rest.webmvc.BasePathAwareController
 import org.springframework.web.bind.annotation.*
@@ -14,12 +14,12 @@ class UserController (private val repository: UserRepository){
     fun index() = repository.findAll()
 
     @GetMapping("/{name}")
-    fun userByEmail(@PathVariable("name") name: String): User {
+    fun userByEmail(@PathVariable("name") name: String): StoreUser {
         return repository.findByUserName(name)
     }
 
     @PostMapping
-    fun create(@RequestBody user: User): User {
+    fun create(@RequestBody user: StoreUser): StoreUser {
         repository.save(user)
         return user
     }

@@ -1,15 +1,15 @@
 package com.musaroq.storeangel.config.services
 
-import com.musaroq.storeangel.entities.User
+import com.musaroq.storeangel.entities.StoreUser
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.stream.Collectors
 
 class CustomUserDetails: UserDetails{
-    private val user: User
+    private val user: StoreUser
 
-    constructor(user: User){
+    constructor(user: StoreUser){
         this.user = user
     }
 

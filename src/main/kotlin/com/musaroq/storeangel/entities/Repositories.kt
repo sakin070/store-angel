@@ -17,6 +17,6 @@ interface LoyaltyCardRepository: JpaRepository<LoyaltyCard, Long>
 interface StockItemLoggingRepository: JpaRepository<StockItemLogging, Long>
 interface SupplierRepository: JpaRepository<Supplier, Long>
 
-interface UserRepository: JpaRepository<User, Long>{
-    fun findByUserName(userName: String): User
+interface UserRepository: JpaRepository<StoreUser, Long>{
+    fun findByUserName(userName: String): StoreUser
 }

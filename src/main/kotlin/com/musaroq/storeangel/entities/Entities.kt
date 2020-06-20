@@ -85,7 +85,7 @@ class Supplier(
 
 
 @Entity
-class User(
+class StoreUser(
         var firstName: String,
         var lastName: String,
         var userName: String,
@@ -99,7 +99,7 @@ class User(
         @ColumnDefault("true")
         var enabled: Boolean,
         @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-        @JoinColumn(name = "userId")
+        @JoinColumn(name = "storeUserId")
         var roles: Set<Role> = HashSet(),
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long? = null
 )
@@ -107,7 +107,7 @@ class User(
 @Entity
 class Role(
         var name: String,
-        var userId: Long,
+        var storeUserId: Long,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(columnDefinition = "serial")
         var id: Long? = null
