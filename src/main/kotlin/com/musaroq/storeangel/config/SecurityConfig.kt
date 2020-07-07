@@ -22,12 +22,6 @@ class SecurityConfig(
 ): WebSecurityConfigurerAdapter(){
 
     override fun configure(auth: AuthenticationManagerBuilder) {
-//        super.configure(auth)
-//        My current fix for protecting posts and puts is to make sure no other manager is signed in
-//        auth?.inMemoryAuthentication()
-//                ?.withUser("user1")?.password(passwordEncoder().encode("user1Pass"))?.roles("USER")?.and()
-//                ?.withUser("user2")?.password(passwordEncoder().encode("user2Pass"))?.roles("USER")?.and()
-//                ?.withUser("admin")?.password(passwordEncoder().encode("adminPass"))?.roles("ADMIN")
         val authProvider = DaoAuthenticationProvider()
         authProvider.setUserDetailsService(customUserDetailsServices)
         authProvider.setPasswordEncoder(passwordEncoder())
@@ -37,11 +31,18 @@ class SecurityConfig(
     override fun configure(http: HttpSecurity) {
         http.cors()
         http.csrf().disable()
-        http.httpBasic()
+//        http.httpBasic()
+        http
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and().logout().permitAll()
         http
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
-                .anyRequest().permitAll()
+//                .antMatchers("/api/**").authenticated()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/font/**").permitAll()
+                .anyRequest().authenticated()
 
 
 //                .httpBasic()

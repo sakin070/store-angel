@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css">
+</head>
+<body class="container">
+        <img th:src="@{../images/storley.png}" alt="sign-in-logo" class="image-column"/>
+
+    <div class="column">
+        <div class="logo-div">
+            Storley
+        </div>
+
+        <div class="welcome-div">
+            Welcome to Musaroq
+        </div>
+
+        <form action="/login" method="post">
+            <label for="username" class="form-label">username</label><br>
+            <input type="text" class="input-form" id="username" name="username"><br>
+            <label for="password" class="form-label">password</label><br>
+            <input type="password" class="input-form" id="password" name="password">
+            <input type="submit" class="input-button" value="Sign in">
+        </form>
+    </div>
+</body>
+</html>

@@ -15,13 +15,14 @@ class RestConfiguration {
         return object : WebMvcConfigurer {
 //            TODO: add html so as to allow it be served by spring
             override fun addViewControllers(registry: ViewControllerRegistry) {
+                registry.addViewController("/login").setViewName("login")
                 registry.addViewController("/").setViewName("forward:/index.html")
                 registry.addViewController("/{x:[\\w\\-]+}")
                         .setViewName("forward:/index.html");
 //                // Multi-level directory path, need to exclude "api" on the first part of the path
                 registry.addViewController("/{x:^(?!api$).*$}/**/{y:[\\w\\-]+}")
                         .setViewName("forward:/index.html");
-            } 
+            }
 
         }
 
