@@ -14,7 +14,7 @@ class LoggingController(private val repository: StockItemLoggingRepository){
     @GetMapping("/")
     fun index() = repository.findAll()
 
-    @PostMapping
+    @PostMapping("/")
     fun create(@RequestBody logging: StockItemLogging): StockItemLogging {
         repository.save(logging)
         return logging

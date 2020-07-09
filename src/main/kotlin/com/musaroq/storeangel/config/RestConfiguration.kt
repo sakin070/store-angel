@@ -23,9 +23,6 @@ class RestConfiguration {
                 registry.addViewController("/{x:^(?!api$).*$}/**/{y:[\\w\\-]+}")
                         .setViewName("forward:/index.html");
             }
-
         }
-
-
     }
 }

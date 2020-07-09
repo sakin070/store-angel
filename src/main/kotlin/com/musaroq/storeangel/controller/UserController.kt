@@ -18,7 +18,7 @@ class UserController (private val repository: UserRepository){
         return repository.findByUserName(name)
     }
 
-    @PostMapping
+    @PostMapping("/")
     fun create(@RequestBody user: StoreUser): StoreUser {
         repository.save(user)
         return user

@@ -22,7 +22,7 @@ class StockController(private val repository: StockItemRepository) {
         return repository.findById(sku)
     }
 
-    @PostMapping
+    @PostMapping("/")
     fun create(@RequestBody stockItem: StockItem): StockItem {
         repository.save(stockItem)
         return stockItem
@@ -39,8 +39,7 @@ class StockController(private val repository: StockItemRepository) {
         stockItemToUpdate.sellingPrice = stockItem.sellingPrice
         stockItemToUpdate.wholeSalePrice = stockItem.wholeSalePrice
         stockItemToUpdate.costPrice = stockItem.costPrice
-        stockItemToUpdate.posQuantity = stockItem.posQuantity
-        stockItemToUpdate.storeQuantity = stockItem.storeQuantity
+        stockItemToUpdate.quantity = stockItem.quantity
         repository.save(stockItemToUpdate)
         return stockItemToUpdate
     }

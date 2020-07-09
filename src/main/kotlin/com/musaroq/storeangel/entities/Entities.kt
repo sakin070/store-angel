@@ -2,7 +2,9 @@ package com.musaroq.storeangel.entities
 
 import org.hibernate.annotations.ColumnDefault
 import java.io.Serializable
+import java.util.*
 import javax.persistence.*
+import kotlin.collections.HashSet
 
 //Stock Item
 @Entity
@@ -21,18 +23,43 @@ class StockItem(
         @ColumnDefault("0")
         var costPrice: Int,
         @ColumnDefault("0")
-        var posQuantity: Int,
-        @ColumnDefault("0")
-        var storeQuantity: Int,
+        var quantity: Int,
+        var category: String,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
 )
 
+@Entity
+class StockCategory(
+        var name: String,
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
+)
 // stock adjustment table ??
 @Entity
 class StockItemLogging(
         var reason: String,
         var stockItemId: Long,
         var userId: Long,
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
+)
+
+@Entity
+class InvoiceItem(
+        var stockItemId: Long,
+        var invoiceId: Long,
+        var quantityPurchased: Int,
+        var costPrice: Int,
+        var sellingPrice: Int,
+        var expiry: Date,
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
+)
+
+@Entity
+class Invoice(
+        var supplierId: Long,
+        var date: Date,
+        @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+        @JoinColumn(name = "invoiceId")
+        var invoiceItem: Set<InvoiceItem> = HashSet(),
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
 )
 //store Inventory
@@ -75,14 +102,6 @@ class Supplier(
         var address: String?,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
 )
-// User, roles and Permissions
-//@Entity
-//class UserRole (
-//        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial")  var roleId: Long,
-//        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial")  var userId: Long
-//): Serializable
-
-
 
 @Entity
 class StoreUser(
@@ -112,8 +131,6 @@ class Role(
         @Column(columnDefinition = "serial")
         var id: Long? = null
 )
-
-
 
 @Entity
 class Branch(

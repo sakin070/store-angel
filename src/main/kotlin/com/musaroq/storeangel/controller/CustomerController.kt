@@ -14,7 +14,7 @@ class CustomerController(private val repository: CustomerRepository) {
     @GetMapping("/")
     fun index() = repository.findAll()
 
-    @PostMapping
+    @PostMapping("/")
     fun create(@RequestBody customer: Customer): Customer{
         repository.save(customer)
         return customer

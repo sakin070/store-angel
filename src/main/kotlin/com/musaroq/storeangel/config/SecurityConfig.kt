@@ -31,27 +31,16 @@ class SecurityConfig(
     override fun configure(http: HttpSecurity) {
         http.cors()
         http.csrf().disable()
-//        http.httpBasic()
         http
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and().logout().permitAll()
         http
                 .authorizeRequests()
-//                .antMatchers("/api/**").authenticated()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/font/**").permitAll()
-                .anyRequest().authenticated()
-
-
-//                .httpBasic()
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/**").permitAll() /* Don't check for security here */
-//                .antMatchers("/login", "/**", "/signup", "/api/**").permitAll() /* Don't check for security here */
-//                .anyRequest().authenticated(); /* anything else. secure it for us */
-
+                .anyRequest().permitAll()
     }
 
     @Bean

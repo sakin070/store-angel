@@ -15,7 +15,7 @@ class SupplierController (private val repository: SupplierRepository){
     @GetMapping("/")
     fun index() = repository.findAll()
 
-    @PostMapping
+    @PostMapping("/")
     fun create(@RequestBody supplier: Supplier): Supplier {
         repository.save(supplier)
         return supplier
