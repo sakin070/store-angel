@@ -17,11 +17,11 @@ class StockItem(
         var quantityPerUnit: Int,
         var reorderLevel: Int,
         @ColumnDefault("0")
-        var sellingPrice: Int,
+        var sellingPrice: Float,
         @ColumnDefault("0")
-        var wholeSalePrice: Int,
+        var wholeSalePrice: Float,
         @ColumnDefault("0")
-        var costPrice: Int,
+        var costPrice: Float,
         @ColumnDefault("0")
         var quantity: Int,
         var category: String,
@@ -46,44 +46,41 @@ class StockItemLogging(
 class InvoiceItem(
         var stockItemId: Long,
         var invoiceId: Long,
-        var quantityPurchased: Int,
-        var costPrice: Int,
-        var sellingPrice: Int,
+        var quantity: Int,
+        var costPrice: Float,
+        var sellingPrice: Float,
+        var oldCostPrice: Float,
+        var oldSellingPrice: Float,
         var expiry: Date,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
 )
 
 @Entity
 class Invoice(
-        var supplierId: Long,
+//        var supplierId: Long,
+        @ManyToOne
+        @JoinColumn(name="supplier_id")
+        var supplier: Supplier,
         var date: Date,
+        var alphaId: String,
         @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
         @JoinColumn(name = "invoiceId")
         var invoiceItem: Set<InvoiceItem> = HashSet(),
+        var total: Float,
+        var postedBy: String,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
 )
-//store Inventory
-//@Entity
-//class Inventory(
-//        var stockItemId: Long,
-//        var branchId: Long,
-//        var sellingPrice: Int,
-//        var wholeSalePrice: Int,
-//        var costPrice: Int,
-//        var posQuantity: Int,
-//        var storeQuantity: Int,
-//        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
-//)
 
 @Entity
 class Customer(
         var firstName: String,
         var lastName: String,
         var age: Int,
-        var phone: Long?,
+        var phone: String?,
         var email: String,
         var address: String?,
-        var loyaltyCardNumber: Long ,
+        var loyaltyCardNumber: String ,
+        var points: Long,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
 )
 
@@ -98,7 +95,7 @@ class LoyaltyCard(
 @Entity
 class Supplier(
         var name: String,
-        var phone: Long?,
+        var phone: String?,
         var address: String?,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long
 )
@@ -137,3 +134,10 @@ class Branch(
         var name: String,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(columnDefinition = "serial") var id: Long? = null
 )
+
+//@Entity
+//class Organization(
+//        var name: String,
+//        var defaultMarkUp: Int,
+//
+//)

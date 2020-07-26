@@ -1,5 +1,41 @@
 insert into stock_item (sku, name, quantity_per_unit, reorder_level, category) values
 (1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),(1,'milk',1, 5, 'FOOD'),
+(2,'indomine',1, 5, 'FOOD'),
 (2,'indomine',1, 5, 'FOOD');
 
 INSERT INTO store_user(user_name, first_name, last_name, hashed_password) VALUES
@@ -19,10 +55,14 @@ INSERT INTO supplier (name,phone,address) VALUES
     ('FAN MILK', '0801234567', 'LAGOS'),
     ('UNILEVER', '0801234567', 'LAGOS');
 
-INSERT INTO invoice (supplier_id, date) VALUES
-    ('1', '2020-07-08');
+INSERT INTO invoice (supplier_id, alpha_id, date, total) VALUES
+    ('1', 'AAAAA', '2020-07-08', 100);
 
 INSERT INTO invoice_item (stock_item_id, invoice_id,
-quantity_purchased, cost_price, selling_price, expiry) VALUES
-    ('1', '1','5','20','30', '2021-05-20'),
-    ('2', '1','5','20', '30','2021-05-20');
+quantity, cost_price, old_cost_price, selling_price, old_selling_price ,expiry) VALUES
+    ('1', '1','5','20', '0','30', '0', '2021-05-20'),
+    ('2', '1','5','20', '0','30', '0', '2021-05-20');
+
+INSERT INTO customer (first_name, last_name, age, phone, email, address, loyalty_card_number, points) VALUES
+    ('sam', 'eggs', 22, '223 345 4456', 'sam@eggs.yt', 'homeless','mu12345679', 23378),
+    ('sam', 'no eggs', 22, '223 345 5556', 'sam@no-eggs.yt', 'homeless','mu12388679', 0);

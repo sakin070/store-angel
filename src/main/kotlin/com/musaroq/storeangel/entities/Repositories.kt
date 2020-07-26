@@ -18,7 +18,13 @@ interface StockItemLoggingRepository: JpaRepository<StockItemLogging, Long>
 interface SupplierRepository: JpaRepository<Supplier, Long>
 interface StockCategoryRepository:JpaRepository<StockCategory, Long>
 interface InvoiceItemRepository:JpaRepository<InvoiceItem, Long>
-interface InvoiceRepository:JpaRepository<Invoice, Long>
+interface InvoiceRepository:JpaRepository<Invoice, Long>{
+    fun findBySupplierIdAndAlphaId(supplierId: Long, alphaId: String):List<Invoice>
+    fun findBySupplierId(supplierId: Long): List<Invoice>
+    @Query("SELECT  s.name, i.alpha_id, i.date, i.posted_by, i.total, i.id FROM invoice i  JOIN supplier s  ON i.supplier_id = s.id",
+    nativeQuery = true)
+    fun listAllTransactions(): List<Object>
+}
 
 interface UserRepository: JpaRepository<StoreUser, Long>{
     fun findByUserName(userName: String): StoreUser

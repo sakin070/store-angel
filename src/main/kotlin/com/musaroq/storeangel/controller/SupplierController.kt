@@ -21,7 +21,7 @@ class SupplierController (private val repository: SupplierRepository){
         return supplier
     }
     @PutMapping("/{id}")
-    fun updateStockItem(@RequestBody supplier: Supplier, @PathVariable("id") id:Long): Supplier{
+    fun updateSupplier(@RequestBody supplier: Supplier, @PathVariable("id") id:Long): Supplier{
         val toUpdate: Supplier   = repository.getOne(id)
         toUpdate.name = supplier.name
         toUpdate.phone = supplier.phone
@@ -30,7 +30,7 @@ class SupplierController (private val repository: SupplierRepository){
         return toUpdate
     }
     @DeleteMapping("/{id}")
-    fun deleteStockItem(@PathVariable("id") id:Long){
+    fun deleteSupplier(@PathVariable("id") id:Long){
         repository.deleteById(id)
     }
 }

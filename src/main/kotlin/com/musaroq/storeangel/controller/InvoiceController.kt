@@ -21,10 +21,21 @@ class InvoiceController (private val repository: InvoiceRepository, private val 
         return repository.findById(id)
     }
 
+    @GetMapping("/alpha/{supplierId}")
+    fun generateAlphaId(@PathVariable("supplierId") supplierId: Long): String{
+        return purchaseLogic.generateInvoiceAlphaId(supplierId)
+    }
+
+    @GetMapping("/supplier/{supplierId}")
+    fun getInvoiceBySupplier(@PathVariable("supplierId") supplierId: Long) :List<Invoice>{
+        return repository.findBySupplierId(supplierId)
+    }
+
+    @GetMapping("/transactions")
+    fun listAllTransactions() = repository.listAllTransactions()
+
     @PostMapping("/")
     fun create(@RequestBody invoice: Invoice):Invoice{
-        print(invoice)
-//        repository.save(invoice)
         purchaseLogic.persistPurchase(invoice)
         return invoice
     }
